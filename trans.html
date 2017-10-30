@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="package/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+        <link rel="stylesheet" href="trans.css" type="text/css">
+        <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div id="demo1">
+            <button v-on:click="show = !show">
+                Toggle
+            </button>
+            <transition name="fade">
+                <p v-if="show">hello</p>
+            </transition>
+        </div>
+        <hr>
+        <h4> CSS 过渡</h4>
+        <div id="demo2">
+            <button v-on:click="show = !show">
+                Toggle
+            </button>
+            <transition name="slide-fade">
+                <p v-if="show">hello</p>
+            </transition>
+        </div>
+        <hr>
+        <h4> CSS 动画</h4>
+        <div id="demo3">
+            <button v-on:click="show = !show">
+                Toggle
+            </button>
+            <transition name="bounce">
+                <p v-if="show">hello</p>
+            </transition>
+        </div>
+        <hr>
+        <h4> 自定义过渡类名 结合Animate.css</h4>
+        <div id="demo4">
+            <button @click="show = !show">
+                Toggle
+            </button>
+            <transition
+                name="custom-classes-transition"
+                enter-active-class="animated tada"
+                leave-active-class="animated bounceOutRight"
+            >
+                <p v-if="show">hello</p>
+            </transition>
+        </div>
+        <hr>
+        <h4> 多个组件的过渡 </h4>
+        <div id="demo5">
+            <input type="radio" id="a" value="v-a" v-model="view">
+            <label for="a">A</label>
+            <input type="radio" id="b" value="v-b" v-model="view">
+            <label for="b">B</label>
+            <transition name="component-fade" mode="out-in">
+                <component v-bind:is="view"></component>
+            </transition>
+        </div>
+        <hr>
+        <h4> 列表的进入/离开过渡 </h4>
+        <div id="demo6">
+            <button v-on:click="add">Add</button>
+            <button v-on:click="remove">Remove</button>
+            <transition-group name="list" tag="p">
+                <span v-for="item in items" v-bind:key="item" class="list-item">
+                    {{ item }}
+                </span>
+            </transition-group>
+        </div>
+        <hr>
+        <h4> 列表的排序过渡 </h4>
+        <div id="demo7">
+            <button v-on:click="shuffle">Shuffle</button>
+            <transition-group name="flip-list" tag="ul">
+                <li v-for="item in items" v-bind:key="item">
+                    {{ item }}
+                </li>
+            </transition-group>
+        </div>
+        <div id="demo8">
+            <button @click="shuffle">
+                Shuffle
+            </button>
+            <transition-group name="cell" tag="div" class="container">
+                <div v-for="cell in cells" :key="cell.id" class="cell">
+                    {{ cell.number }}
+                </div>
+            </transition-group>
+        </div>
+
+        <script type="text/javascript" src="trans.js"></script>
+    </body>
+</html>

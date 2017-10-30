@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="package/vue.js"></script>
+        <script src="https://cdn.rawgit.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e/raw/974aa47f8f9c5361c5233bd56be37db8ed765a09/currency-validator.js"></script>
+    </head>
+    <body>
+        <div id="todo-list-example">
+            <input v-model="newTodoText"
+                   v-on:keyup.enter="addNewTodo"
+                   placeholder="Add a todo"
+            >
+            <ul>
+                <li
+                    is="todo-item"
+                    v-for="(todo, index) in todos"
+                    v-bind:key="todo.id"
+                    v-bind:title="todo.title"
+                    v-on:remove="todos.splice(index, 1)"
+                ></li>
+            </ul>
+        </div>
+        <hr>
+        <div id="example-1">
+            <button v-on:click="counter += 1">增加1</button>
+            <p>增加了{{counter}}次</p>
+        </div>
+        <hr>
+        <div id="example-2">
+            <button v-on:click="greet">greet</button>
+        </div>
+        <hr>
+        <div id="example-3">
+            <button v-on:click="say('hi')">say hi</button>
+        </div>
+        <br>
+        <h3>表单输入绑定</h3>
+        <div id="example-4">
+            <span>Multiline message is:</span>
+            <p style="white-space: pre-line;">{{ message }}</p>
+            <br>
+            <textarea v-model="message" placeholder="add multiple lines">aaa</textarea>
+        </div>
+        <hr>
+        <div id="example-5">
+            <input type="checkbox" id="jack" value="jack" v-model="checkedNames">
+            <label for="jack">Jack</label>
+            <input type="checkbox" id="john" value="john" v-model="checkedNames">
+            <label for="john">John</label>
+            <span>Checked names: {{ checkedNames}}</span>
+        </div>
+        <hr>
+        <div id="example-6">
+            <select v-model="selected">
+                <option disabled value="">请选择</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+            </select>
+            <span>Selected: {{selected}} </span>
+        </div>
+        <hr>
+        <div id="example-7">
+            <child my-message="hello!"></child>
+        </div>
+        <hr>
+        <!-- 自定义事件 -->
+        <div id="counter-event-example">
+            <p> {{ total }} </p>
+            <button-counter v-on:increment="incrementTotal"></button-counter>
+            <button-counter v-on:increment="incrementTotal"></button-counter>
+            <button-counter v-on:click="dosth"></button-counter>
+            <button-counter v-on:click.native="dosthNative"></button-counter>
+        </div>
+        <div id="example-8">
+            <currency-input v-model="price"></currency-input>
+        </div>
+        <div id="example-9">
+            <currency-input-2 label="Price" v-model="price"></currency-input-2>
+            <currency-input-2 label="Shipping" v-model="shipping"></currency-input-2>
+            <currency-input-2 label="Handling" v-model="handling"></currency-input-2>            
+            <currency-input-2 label="Discount" v-model="discount"></currency-input-2>    
+            <p>Total: ${{ total }}</p>
+        </div>
+        <script type="text/javascript" src="v_for_component.js"></script>
+    </body>
+</html>
