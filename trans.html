@@ -3,6 +3,7 @@
     <head>
         <script type="text/javascript" src="package/vue.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
         <link rel="stylesheet" href="trans.css" type="text/css">
         <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
     </head>
@@ -91,6 +92,44 @@
                 </div>
             </transition-group>
         </div>
+        <hr>
+        <h4> 列表的交错过渡(js钩子函数控制动画css) </h4>
+        <div id="demo9">
+            <input v-model="query">
+            <transition-group 
+                name="staggered-fade"
+                tag="ul"
+                v-bind:css="false"
+                v-on:before-enter="beforEnter"
+                v-on:enter="enter"
+                v-on:leave="leave"
+            >
+                <li
+                    v-for="(item, index) in computedList"
+                    v-bind:key="item.msg"
+                    v-bind:data-index="index"
+                >{{ item.msg }}</li>
+            </transition-group>
+        </div>
+        <hr>
+        <h4> 动态过渡(range游标位置不对) </h4>
+        <div id="demo10">
+            Fade In:<input type="range" v-model="fadeInDuration" min="0" max="maxFadeDuration">
+            Fade Out:<input type="range" v-model="fadeOutDuration" min="0" max="maxFadeDuration">
+            <transition
+                v-bind:css="false"
+                v-on:before-enter="beforEnter"
+                v-on:enter="enter"
+                v-on:leave="leave"
+            >
+                <p v-if="show">hello</p>
+            </transition>
+            <button v-if="stop" v-on:click="stop = false; show = false">Start animating</button>
+            <button v-else v-on:click="stop = true">Stop it!</button>
+
+            
+        </div>
+
 
         <script type="text/javascript" src="trans.js"></script>
     </body>

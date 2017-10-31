@@ -85,9 +85,14 @@
 .cell:nth-child(3n) {
     margin-right: 0;
   }
-  .cell:nth-child(27n) {
+.cell:nth-child(27n) {
     margin-bottom: 0;
-  }
+}
 .cell-move {
+    transition: transform 1s;
+}
+
+/* 列表的交错过渡 */
+.staggered-fade-move {
     transition: transform 1s;
 }
